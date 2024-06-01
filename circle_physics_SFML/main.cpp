@@ -12,6 +12,10 @@ int main()
 
     sf::CircleShape scircle(10, 32);
     scircle.setFillColor(sf::Color::White);
+
+    sf::RectangleShape rectanglebg({ 800, 800 });
+    rectanglebg.setFillColor(sf::Color(0, 0, 0, 100));
+
     sf::Clock deltaClock;
 
     Circle allCircles[5000];
@@ -36,7 +40,7 @@ int main()
             }
         }
 
-       window.clear();
+        window.draw(rectanglebg);
 
        if (numCircles < 5000 and dt.asMilliseconds() < 18 and isSpawning)
        {
