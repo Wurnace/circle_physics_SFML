@@ -54,17 +54,8 @@ EntryPoint
         {
             allCircles[numCircles] = Circle({ 500, 520 }, { 2, 0 }, 100);
             numCircles++;
-            lowFPSbuffer = 0;
         }
 
-        /*
-        if (dt.asMilliseconds() > 18 && isSpawning)
-        {
-            lowFPSbuffer++;
-            if (lowFPSbuffer > 10)
-                isSpawning = 0;
-        }
-        */
         isSpawning = true || (dt.asMilliseconds() < 100);
 
         for (int i = 0; i < numCircles; i++)

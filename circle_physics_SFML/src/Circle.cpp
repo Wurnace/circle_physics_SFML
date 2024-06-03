@@ -1,7 +1,7 @@
 #include "Circle.h"
 
 // This Macro is for whether Circle::Collision applies a force to the other circle colliding
-#define CollisionStep2 false
+#define CollisionStep2 true
 
 // CIRCLE CODE
 void Circle::Collision(Circle* allCircles, int numCircles, float dt)
