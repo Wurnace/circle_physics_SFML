@@ -2,22 +2,30 @@
 
 #include<iostream>
 
+#define PI 3.1415926535
+
 struct Vector
 {
 public:
 	Vector() {}
 	Vector(float x, float y) : x(x), y(y) {}
-	float x;
-	float y;
+	float x = 0;
+	float y = 0;
 
-	float mag()
+	float magSq() const
+	{
+		return (this->x * this->x) + (this->y * this->y);
+	}
+
+	float mag() const
 	{
 		return sqrt((this->x * this->x) + (this->y * this->y));
 	}
 
 	void set(float x, float y)
 	{
-		this->x = x; this->y = y;
+		this->x = x;
+		this->y = y;
 	}
 
 	void setMag(float mag)
@@ -52,17 +60,17 @@ public:
 		return this->setNewMag(1);
 	}
 
-	Vector copy()
+	Vector copy() const
 	{
 		return Vector(this->x, this->y);
 	}
 
-	float dot(Vector other)
+	float dot(Vector other) const
 	{
 		return (this->x * other.x) + (this->y * other.y);
 	}
 
-	Vector operator+(Vector other)
+	Vector operator+(Vector other) const
 	{
 		Vector result;
 		result.x = this->x + other.x;
@@ -74,7 +82,7 @@ public:
 		this->x += other.x;
 		this->y += other.y;
 	}
-	Vector operator-(Vector other)
+	Vector operator-(Vector other) const
 	{
 		Vector result;
 		result.x = this->x - other.x;
@@ -86,14 +94,14 @@ public:
 		this->x -= other.x;
 		this->y -= other.y;
 	}
-	Vector operator*(Vector other)
+	Vector operator*(Vector other) const
 	{
 		Vector result;
 		result.x = this->x * other.x;
 		result.y = this->y * other.y;
 		return result;
 	}
-	Vector operator*(float number)
+	Vector operator*(float number) const
 	{
 		Vector result;
 		result.x = this->x * number;
@@ -110,7 +118,7 @@ public:
 		this->x *= other.x;
 		this->y *= other.y;
 	}
-	Vector operator/(Vector other)
+	Vector operator/(Vector other) const
 	{
 		Vector result;
 		result.x = this->x / other.x;
@@ -122,7 +130,7 @@ public:
 		this->x /= other.x;
 		this->y /= other.y;
 	}
-	Vector operator/(float number)
+	Vector operator/(float number) const
 	{
 		Vector result;
 		result.x = this->x / number;
@@ -142,7 +150,7 @@ public:
 
 	void rotate(float Angle, Vector Pivot = { 0, 0 })
 	{
-		if (int(Angle * 180 / 3.1415926535897932384626433832795028841971693993751) % 360 == 0)
+		if (int(Angle * 180 / PI) % 360 == 0)
 			return;
 
 		float s = sin(Angle);
@@ -156,19 +164,19 @@ public:
 
 	}
 
-	Vector rotateNew(double Angle, Vector Pivot = { 0, 0 })
+	Vector rotateNew(double Angle, Vector Pivot = { 0, 0 }) const
 	{
 		return this->rotateNew(float(Angle), Pivot);
 	}
 
-	Vector rotateNew(float radians, Vector Pivot = { 0, 0 })
+	Vector rotateNew(float radians, Vector Pivot = { 0, 0 }) const
 	{
 		Vector myCopy = this->copy();
 		myCopy.rotate(radians, Pivot);
 		return myCopy;
 	}
 
-	float heading()
+	float heading() const
 	{
 		if (this->y >= 0)
 			return acos(this->x / this->mag());
@@ -180,6 +188,6 @@ public:
 		return { sin(angle), cos(angle) };
 	}
 
-	bool operator==(Vector other) { return (other.x == this->x) && (other.y == this->y); }
-	bool operator!=(Vector other) { return !this->operator==(other); }
+	bool operator==(Vector other) const { return (other.x == this->x) && (other.y == this->y); }
+	bool operator!=(Vector other) const { return !this->operator==(other); }
 };
