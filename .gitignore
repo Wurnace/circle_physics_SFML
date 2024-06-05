@@ -363,3 +363,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/circle_physics_SFML/src/Circle.cpp
+/.gitignore
+/.gitignore
