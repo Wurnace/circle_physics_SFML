@@ -226,10 +226,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Circle.cpp" />
+    <ClCompile Include="src\Grid.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Circle.h" />
+    <ClInclude Include="src\Grid.h" />
     <ClInclude Include="src\Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
