@@ -81,8 +81,9 @@ void Circle::Update(Circle* allCircles, int numCircles, float dt)
     }
 }
 
-void CollisionNoSelf(Circle* allCircles, int numCircles, float dt, Vector source, int radius)
+bool CollisionNoSelf(Circle* allCircles, int numCircles, float dt, Vector source, int radius)
 {
+    bool yes = false;
     for (int i = 0; i < numCircles; i++)
     {
         Vector axis = source - allCircles[i].Position;
@@ -90,6 +91,10 @@ void CollisionNoSelf(Circle* allCircles, int numCircles, float dt, Vector source
         int minDist = radius + allCircles[i].Radius;
         minDist *= minDist;
         if (distSq <= minDist && distSq > 0)
+        {
             allCircles[i].Position -= (axis / distSq) * (0.03f * (minDist - distSq));
+            yes = true;
+        }
     }
+    return yes;
 }

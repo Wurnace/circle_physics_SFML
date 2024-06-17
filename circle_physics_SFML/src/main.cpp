@@ -55,8 +55,11 @@ EntryPoint
 
         if (numCircles < MAX_CIRCLES && dt.asMilliseconds() < 18 && isSpawning)
         {
-            allCircles[numCircles] = Circle({ 500, 520 }, { 2, 0 }, CIRCLE_RADIUS);
-            numCircles++;
+            if (!CollisionNoSelf(allCircles, numCircles, 0.0f, { 500, 520 }, 100))
+            {
+                allCircles[numCircles] = Circle({ 500, 520 }, { 25, 0 }, CIRCLE_RADIUS);
+                numCircles++;
+            }
             lowFPSbuffer = 0;
 
             std::cout << numCircles << "\n";

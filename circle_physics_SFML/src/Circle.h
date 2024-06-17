@@ -4,8 +4,8 @@
 #include <array>
 
 const int MAX_CIRCLES = 10000;
-const int WORLD_SIZE_X = 90000;
-const int WORLD_SIZE_Y = 90000;
+const int WORLD_SIZE_X = 50000;
+const int WORLD_SIZE_Y = 50000;
 
 class Circle
 {
@@ -14,7 +14,7 @@ public:
     Circle(Vector position, int radius)
         : Position(position), PositionOld(position), Radius(radius) {}
     Circle(Vector position, Vector velocity, int radius)
-        : Position(position), PositionOld(position + velocity), Radius(radius) {}
+        : Position(position), PositionOld(position - velocity), Radius(radius) {}
 
     void Collision(Circle* allCircles, int numCircles, float dt);
     void Collision(Circle* other, float dt);
@@ -27,4 +27,4 @@ public:
     int Radius { 25 };
 };
 
-void CollisionNoSelf(Circle* allCircles, int numCircles, float dt, Vector source, int radius);
+bool CollisionNoSelf(Circle* allCircles, int numCircles, float dt, Vector source, int radius);
